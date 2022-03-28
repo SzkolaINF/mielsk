@@ -1,0 +1,160 @@
+t2.txt
+
+sudo apt install -y python3-pip
+sudo apt install -y python3-pyqt5 python3-pyqt5.qtsvg python3-pyqt5.qtwebsockets
+
+sudo apt install -y qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst
+
+sudo apt install -y wireshark
+
+sudo apt remove docker docker-engine docker.io
+
+curl -fsSL https://get.docker.com/ | sh
+
+sudo apt install dynamips
+
+git clone https://github.com/GNS3/ubridge
+sudo apt install libpcap-dev
+make
+sudo make install
+
+sudo pip3 install gns3-server
+sudo pip3 install gns3-gui
+
+sudo usermod -ag libvirt,kvm,wireshark,docker live ///////////////// -a -g // -a -G
+
+sudo virsh net-start default
+
+____________________________________________________________________________________________________________________
+
+t.txt
+! Sparky
+
+sudo passwd
+sudo apt update
+lsusb
+
+sudo apt install dkms git build-essential libelf-dev linux-headers-$(uname -r)
+git clone https://github.com/aircrack-ng/rtl8812au.git
+cd rtl8812au/
+sudo make dkms_install
+sudo dkms status
+
+--> unplug/plug tplink T2U wifi
+
+
+sudo apt install dhcp-client
+sudo apt install ifupdown
+sudo apt install rfkill
+
+sudo rfkill list
+
+sudo apt install wpasupplicant
+
+https://www.linuxbabe.com/command-line/ubuntu-server-16-04-wifi-wpa-supplicant
+
+sudo systemctl stop NetworkManager
+sudo systemctl disable NetworkManager
+
+ip link show
+sudo ifconfig wlp3s0 up
+
+wpa_passphrase "LabNet" "passpass" | sudo tee /etc/wpa_supplicant.conf
+sudo wpa_supplicant -B -c /etc/wpa_supplicant.conf -i wlan1
+sudo dhclient wlan1
+
+:) :) Enjoy network !!!
+
+
+! R1/ FastEthernet0/1/ DHCP Client
+
+R1>en
+R1#sh ip int brief
+
+R1#conf t
+R1(config)#int fastEthernet 0/0
+
+R1(config-if)#ip address dhcp
+R1(config-if)#no shut
+
+? !---! ip domain-lookup
+R1(config)#ip domain lookup source-interface FastEthernet 0/0
+R1(config)#ip name-server 8.8.8.8
+
+R1#conf t
+R1(config)#int fastEthernet 0/1
+R1(config-if)#mac-address aaaa.cccc.ffff
+
+R1(config-if)#ip address 10.1.1.2 255.255.255.0
+R1(config-if)#no shut
+R1(config-if)#exit
+R1(config)#exit
+R1#sh ip int brief
+
+R1#conf t
+
+R1(config)#ip dhcp pool clients
+
+R1(dhcp-config)#network 10.1.1.0 255.255.255.0
+R1(dhcp-config)#default-router 10.1.1.2
+R1(dhcp-config)#dns-server 8.8.8.8
+R1(dhcp-config)#lease 7
+R1(dhcp-config)#exit
+
+R1(config)#ip dhcp excluded-address 10.1.1.1 10.1.1.10
+R1(config)#exit
+
+R1#show ip dhcp pool
+R1#show ip dhcp bind
+
+!!!NAT c7200
+https://www.youtube.com/watch?v=2zeoC2Q4mW0
+
+R1(config)#int fastEthernet 0/0
+R1(config-if)#ip nat outside
+R1(config-if)#exit
+R1(config)#interface fastEthernet 0/1
+R1(config-if)#ip nat inside
+R1(config-if)#exit
+R1(config)#ip nat inside source list 1 interface fastEthernet 0/0 overload
+R1(config)#access-list 1 permit any
+
+R1(config)#exit
+R1#sh run
+
+-------------------------
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#ip dhcp pool ManualDHCPUser1
+R1(dhcp-config)#host 10.1.1.150 255.255.255.0
+R1(dhcp-config)#client-identifier f261.17b7.927e
+-------------------------
+
+R1(dhcp-config)#exit
+
+/etc/dnsmasq.conf
+
+domain-needed
+bogus-priv
+
+local=/home.com/
+address=/r1/10.1.1.2
+address=/ubuntu-server/10
+
+https://networkrare.com/free-download-cisco-ios-images-for-gns3-and-eve-ng/
+
+
+sudo apt install nm-tray - instalacja network managera
+sudo apt install rfkill - wlaczanie karty sieciowej
+
+gns3 server>>>>>>>>>>>>>>>>>>>
+sudo pip3 uninstall gns3-gui
+sudo pip3 install gns3-gui==2.2.27
+
+
+
+
+
+
+
+

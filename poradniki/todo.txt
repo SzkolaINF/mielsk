@@ -1,0 +1,140 @@
+sudo apt install bridge-utils
+
+sudo ip -c link show
+sudo ip -c -br link show
+sudo ip -c -d link show
+
+sudo ip link add name br0 type bridge
+
+sudo ip link add name vth1 type veth peer vth_1
+sudo ip link add name vth2 type veth peer vth_2
+
+sudo ip link add name vth3 type veth peer vth_3
+sudo ip link add name vth4 type veth peer vth_4
+
+sudo ip netns ls
+
+sudo ip netns add ns1
+sudo ip netns add ns2
+sudo ip netns add ns3
+sudo ip netns add ns4
+
+sudo ip link set dev vth_1 netns ns1
+sudo ip link set dev vth_2 netns ns2
+sudo ip link set dev vth_3 netns ns3
+sudo ip link set dev vth_4 netns ns4
+
+sudo ip -n ns1 -c -br link show
+sudo ip netns exec ns1  ip -br -c link show
+
+sudo ip -n ns1 link set dev vth_1 up
+sudo ip -n ns1 address add 192.168.10.1/24 dev vth_1
+
+sudo ip -n ns2 link set dev vth_2 up
+sudo ip -n ns2 address add 192.168.10.2/24 dev vth_2
+
+sudo ip -n ns3 link set dev vth_3 up
+sudo ip -n ns3 address add 192.168.10.3/24 dev vth_3
+
+sudo ip -n ns4 link set dev vth_4 up
+sudo ip -n ns4 address add 192.168.10.4/24 dev vth_4
+
+sudo ip -c -br link show  type bridge
+
+sudo ip link set dev vth1 master br0
+sudo ip link set dev vth2 master br0
+
+sudo ip link set dev vth3 master br0
+sudo ip link set dev vth4 master br0
+
+
+sudo ip link set dev vth1 up
+sudo ip link set dev vth2 up
+
+sudo ip link set dev vth3 up
+sudo ip link set dev vth4 up
+
+sudo ip link set dev br0 up
+sudo ip -c -br link show  type bridge
+
+
+sudo bridge fdb show dynamic
+
+sudo ip netns exec ns1 ping 192.168.10.2
+sudo bridge fdb show dynamic
+
+sudo bridge fdb del 00:11:22:33:44:55 dev vth1 master
+sudo bridge fdb show dynamic
+
+sudo ip link set dev br0 type bridge help
+sudo ip link set dev br0 type bridge vlan_filtering 1
+
+sudo ip -c -d link show br0
+
+sudo bridge vlan help
+sudo bridge vlan show
+
+sudo bridge vlan add vid 10 dev vth1 pvid untagged
+sudo bridge vlan add vid 10 dev vth2 pvid untagged master
+!!!tu mozna pingowac miedzy 1 i 2 zanim dodamy 3 i 4 do vid 20
+
+sudo bridge vlan add vid 20 dev vth3 pvid untagged
+sudo bridge vlan add vid 20 dev vth4 pvid untagged master
+
+sudo bridge vlan show
+
+sudo bridge vlan del vid 1 dev vth1
+sudo bridge vlan del vid 1 dev vth2
+sudo bridge vlan del vid 1 dev vth3
+sudo bridge vlan del vid 1 dev vth4 master
+
+sudo bridge vlan del vid 1 dev br0 self
+
+sudo bridge fdb show
+sudo bridge fdb show dynamic
+
+sudo ip link add link br0 name br0.10 type vlan id 10
+sudo ip link add link br0 name br0.20 type vlan id 20
+
+sudo ip -c -br link show
+
+sudo ip link set dev br0.10 up
+sudo ip link set dev br0.20 up
+
+sudo ip -c -br link show
+
+sudo ip addr add 192.168.10.5/24 dev br0.10
+sudo ip addr add 192.168.20.5/24 dev br0.20
+sudo ip -c -br addr show
+
+sudo cat /proc/sys/net/ipv4/ip_forward
+
+sudo echo "1" > /proc/sys/net/ipv4/ip_forward
+sudo cat /proc/sys/net/ipv4/ip_forward
+
+sudo sysctl -a | grep ip_forward
+
+sudo ip netns exec ns1 ping 192.168.20.3
+sudo ip link set dev br0 type bridge vlan_filtering 1
+
+sudo ip -n ns3 address del 192.168.10.3/24 dev vth_3
+sudo ip -n ns4 address del 192.168.10.4/24 dev vth_4
+
+sudo ip -n ns3 address add 192.168.20.3/24 dev vth_3
+sudo ip -n ns4 address add 192.168.20.4/24 dev vth_4
+
+sudo ip -n ns1 route add default via 192.168.10.5 dev vth_1
+sudo ip -n ns2 route add default via 192.168.10.5 dev vth_2
+sudo ip -n ns3 route add default via 192.168.20.5 dev vth_3
+sudo ip -n ns4 route add default via 192.168.20.5 dev vth_4
+
+sudo bridge vlan add vid 10 dev br0 self
+sudo bridge vlan add vid 20 dev br0 self
+
+sudo ip netns exec ns1 ping 192.168.20.3
+
+sudo ip -n ns1 route del default via 192.168.10.5 dev vth_1
+sudo ip -n ns2 route del default via 192.168.10.5 dev vth_2
+sudo ip -n ns3 route del default via 192.168.20.5 dev vth_3
+sudo ip -n ns4 route del default via 192.168.20.5 dev vth_4
+

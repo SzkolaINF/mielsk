@@ -1,0 +1,307 @@
+    1  sudo passwd
+    2  sudo apt install
+    3  sudo apt update
+    4  cd Desktop/
+    5  sudo nano gns3-instalka+ruter 
+    6  cd Desktop/
+    7  sudo nano gns3-instalka+ruter 
+    8  bash gns3-instalka+ruter 
+    9  clear
+   10  cd
+   11  ip a
+   12  sudo apt update
+   13  sudo apt install bridge-utils
+   14  ip a
+   15  sudo ip -c link show
+   16  sudo ip -c -d link show
+   17  sudo ip -c -dr link show
+   18  sudo ip link add name br0 type bridge
+   19  ip a
+   20  sudo ip -c link show
+   21  sudo ip link add name bth1 type veth peer vth_1
+   22  sudo ip -c link show
+   23  ping wp.pl
+   24  sudo ip link add name vth2 type veth peer vth_2
+   25  sudo ip link add name vth3 type veth peer vth_3
+   26  sudo ip link add name vth4 type veth peer vth_4
+   27  sudo ip -c link show
+   28  r 46:c7:de:fe:51:b8 brd ff:ff:ff:ff:ff:ff
+   29  4: vth_1@bth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+   30  sudo ip link add name vth1 type veth peer vth_1
+   31  history 
+   32  sudo ip netsn ls
+   33  sudo ip netns ls
+   34  man ip
+   35  sudo ip -c link show
+   36  sudo ip netns ls
+   37  sudo ip netns add ns1
+   38  sudo ip netns add ns2
+   39  sudo ip netns add ns3
+   40  sudo ip netns add ns4
+   41  sudo ip netns ls
+   42  sudo ip -c link show
+   43  sudo ip link set dev vth_1 netns ns1_
+   44  sudo ip link set dev vth_1 netns ns1
+   45  sudo ip link set dev vth_2 netns ns2
+   46  sudo ip link set dev vth_3 netns ns3
+   47  sudo ip link set dev vth_4 netns ns4
+   48  history 
+   49  sudoip netns exec ns1 ip -br -c link show
+   50  sudo ip netns exec ns1 ip -br -c link show
+   51  sudo ip -n ns1 link set dev vth_1 up
+   52  sudo ip netns exec ns1 ip -br -c link show
+   53  cd Desktop/
+   54  touch komendy2.txt
+   55  cd
+   56  history >> /Desktop.komendy2.txt
+   57  sudo history >> /Desktop.komendy2.txt
+   58  sudo history >> /Desktop/komendy2.txt
+   59  sudo history -h >> /Desktop/komendy2.txt
+   60  cd
+   61  cd Desktop/
+   62  history 
+   63  history >> komendy2.txt 
+   64  cat komendy2.txt 
+   65  cd
+   66  sudo ip -c link show
+   67  sudo ip netns exec ns1 ip -br -c link show
+   68  sudo ip netns exec ns1 bash
+   69  ps aux |grep ps aux
+   70  ip a
+   71  ps aux |grep ip
+   72  clear
+   73  history 
+   74  history -c | grep ip
+   75  history  | grep ip
+   76  sudo ip netns exec ns1 bash
+   77  sudo ip -n ns1 link set dev vth_2 up
+   78  sudo ip -n ns2 link set dev vth_2 up
+   79  sudo ip -c link show
+   80  sudo ip netns exec ns2 ip -br -c link show
+   81  history 
+   82  sudo ip -n ns1 address add 192.168.10.1/24 dev vth1
+   83  sudo ip -n ns1 address add 192.168.10.1/24 dev vth_1
+   84  sudo ip -n ns2 link set dev vth_2 up
+   85  sudo ip -n ns2 address add 192.168.10.2/24 dev vth_2
+   86  sudo ip -n ns2 link set dev vth_3 up
+   87  sudo ip -n ns3 link set dev vth_3 up
+   88  sudo ip -n ns3 address add 192.168.10.3/24 dev vth_3
+   89  sudo ip -n ns4 link set dev vth_4 up
+   90  sudo ip -n ns4 address add 192.168.10.4/24 dev vth_4
+   91  sudo ip -c -br link show type bridge
+   92  sudo ip -c -br link show 
+   93  ip a
+   94  sudo ip netns exec ns1 ip addr add 192.168.1/24 dev vth1
+   95  sudo ip netns exec ns1 ip addr add 192.168.1/24 dev vth_1
+   96  ip a
+   97  sudo ip -c -br link show 
+   98  ip a
+   99  sudo ip netns exec ns2 ip addr add 192.168.10.2/24 dev vth_2
+  100  history 
+  101  ip
+  102  history 
+  103  cd Desktop/
+  104  history > komendy2.txt 
+  105  tail -5 komendy2.txt 
+  106  cd
+  107  ip a
+  108  ip -n ns1 addr show
+  109  sudo ip -n ns1 addr show
+  110  sudo ip -n ns1 addr del 192.168.1.0 dev vth_1 
+  111  sudo ip -n ns1 del addr 192.168.1.0 dev vth_1 
+  112  sudo ip -n ns1 addr del 192.168.1.0/24 dev vth_1 
+  113  ip -n ns1 addr show
+  114  sudo ip -n ns1 addr show
+  115  sudo ip -n ns2 addr show
+  116  sudo ip -n ns3 addr show
+  117  sudo ip -n ns4 addr show
+  118  ping ns2
+  119  sudo ip netns exec ns1 ping 192.168.10.1/24
+  120  sudo ip netns exec ns1 ping 192.168.10.2
+  121* sudo ip netns exec ns1 ping 192.168.10.2cd Des
+  122  cd Desktop/
+  123  history > komendy2.txt 
+  124  cd
+  125  sudoip -c -br link show type bridge
+  126  sudo ip -c -br link show type bridge
+  127  sudo ip link set dev bth1 master br0
+  128  sudo ip -c -br link show type bridge
+  129  sudo ip link set dev vth2 master br0
+  130  sudo ip -c -br link show type bridge
+  131  sudoip -br -c link show
+  132  sudo ip -br -c link show
+  133  sudo ip link set dev br0 up
+  134  sudo ip -c -br link show type bridge
+  135  sudo ip netns exec ns1 ping 192.168.10.2
+  136  sudo ip netns exec ns2 ping 192.168.10.1
+  137  history > /home/live/Desktop/komendy2.txt
+  138  sudo bridge fdb show dynamic
+  139  sudo ip -c -br link show type bridge
+  140  history > /home/live/Desktop/komendy2.txt
+  141  sudo ip -c -br link show type bridge
+  142  sudo bridge fdb show dynamic
+  143  sudo ip netns exec ns1 ping 192.168.10.2
+  144  sudo ip netns exec ns1 ping 192.168.10.3
+  145  sudo ip link set dev vth3 master br0
+  146  sudo ip link set dev vth4 master br0
+  147  sudo ip netns exec ns1 ping 192.168.10.2
+  148  sudo ip netns exec ns1 ping 192.168.10.4
+  149  sudo ip netns exec ns3 ping 192.168.10.1
+  150  history > /home/live/Desktop/komendy2.txt
+  151  sudo ip netns exec ns3 addr del 192.168.10.3/24 dev vth3
+  152  sudo ip netns exec ns3 ip addr del 192.168.10.3/24 dev vth3
+  153  sudo ip netns exec ns3 ip addr del 192.168.10.3/24 dev vth_3
+  154  sudo ip netns exec ns3 ip addr add 192.168.20.3/24 dev vth_3
+  155  sudo ip netns exec ns4 ip addr add 192.168.10.4/24 dev vth_4
+  156  sudo ip netns exec ns4 ip addr del 192.168.10.4/24 dev vth_4
+  157  sudo ip netns exec ns4 ip addr add 192.168.20.4/24 dev vth_4
+  158  sudo ip netns exec ns4 ip a
+  159  history > /home/live/Desktop/komendy2.txt
+  160  sudo ip netns exec ns3 ip a
+  161  sudo ip netns exec ns3 ping 192.168.10.1
+  162  sudo ip netns exec ns1 ping 192.168.20.3
+  163  sudo ip netns exec ns1 ping 192.168.10.2
+  164  sudo ip -c -br link  show type bridge
+  165  sudo ip netns exec ns1 ping 192.168.20.4
+  166  sudo ip link set dev vth3 master br0
+  167  sudo ip link set dev vth4 master br0
+  168  sudo ip netns exec ns1 ping 192.168.20.4
+  169  sudo ip netns exec ns4 ping 192.168.10.1
+  170  ipa
+  171  sudo ip netns exec ns1 ip a
+  172  sudo ip netns exec ns2 ip a
+  173  sudo ip netns exec ns3 ip a
+  174  sudo ip netns exec ns4 ip a
+  175  sudo bridge fdc show dynamic
+  176  sudo bridge fdb show dynamic
+  177  sudo ip -c -br link show type bridge
+  178  sudo ip netns exec ns3 ping 192.168.20.4
+  179  sudo bridge fdb show dynamic
+  180  history > /home/live/Desktop/komendy2.txt
+  181  sudo bridge vlan show
+  182  history > /media/live/KINGSTON/komendy2.txt 
+  183  sudo bridge vlan add vid 10 dev bth1 pvid untagged
+  184  sudo bridge vlan add vid 10 dev bth1 pvid untagged master
+  185  sudo ip netns exec ns1 ping 192.168.10.2
+  186  sudo bridge vlan show
+  187  history > /media/live/KINGSTON/komendy2.txt 
+  188  sudo ip netns exec ns3 ip addr del 192.168.20.3/24 dev vth_3
+  189  sudo ip netns exec ns3 ip addr add 192.168.10.3/24 dev vth_3
+  190  sudo ip netns exec ns4 ip addr del 192.168.20.4/24 dev vth_4
+  191* sudo ip netns exec ns4 ip addr add 192.168.10.4/24 dev vth_
+  192  sudo ip netns exec ns4 ip a
+  193  sudo ip netns exec ns4 ping 192.168.10.1
+  194  sudo bridge vlan show
+  195  sudo bridge fdb show dynamic
+  196  sudo ip netns exec ns3 ping 192.168.10.1
+  197  sudo bridge fdb show dynamic
+  198  sudo bridge vlan show
+  199  sudo bridge vlan add vid 10 dev vth2 pvid untagged master
+  200  sudo ip netns exec ns1 ping 192.168.10.2
+  201  sudo bridge vlan show
+  202  sudo bridge vlan del vid 1 dev bth1
+  203  sudo bridge vlan del vid 1 dev vth2
+  204  sudo bridge vlan del vid 1 dev vth3
+  205  sudo bridge vlan del vid 1 dev vth4
+  206  sudo bridge vlan del vid 1 dev vth4 master
+  207  sudo bridge vlan del vid 1 dev br0 self
+  208  sudo bridge vlan show
+  209  sudo ip netns exec ns1 ping 192.168.10.2
+  210  sudo ip netns exec ns1 ping 192.168.10.3
+  211  sudo bridge fdb show dynamic
+  212  sudo bridge vlan add vid 20 dev vth3 pvid untagged
+  213  sudo bridge vlan add vid 20 dev vth4 pvid untagged master
+  214  sudo bridge vlan show
+  215  sudo ip netns exec ns1 ping 192.168.10.3
+  216  sudo ip link set dev br0 bridge vlan_filtering 1
+  217  sudo ip link set dev br0 type bridge vlan_filtering 1
+  218  sudo ip netns exec ns1 ping 192.168.10.3
+  219  history > /media/live/KINGSTON/komendy2.txt 
+  220  sudo ip -c link show br0
+  221  sudo ip -c -d link show br0
+  222  sudo ip netns exec ns1 ping 192.168.10.2
+  223  sudo ip netns exec ns1 ping 192.168.10.4
+  224  sudo ip netns exec ns3 ping 192.168.10.4
+  225  history > /media/live/KINGSTON/komendy2.txt 
+  226  sudo bridge vlan del vid 10 dev bth1
+  227  sudo bridge vlan del vid 10 dev vth2
+  228  sudo bridge vlan del vid 20 dev vth3
+  229  sudo bridge vlan del vid 20 dev vth4
+  230  sudo bridge vlan show
+  231  sudo bridge vlan add vid 10 dev vth1 
+  232  sudo bridge vlan add vid 10 dev vth_1 
+  233  sudo bridge vlan add vid 10 dev bth_1 
+  234  sudo bridge vlan add vid 10 dev bth1 
+  235  sudo bridge vlan add vid 10 dev vth2 
+  236  sudo bridge vlan add vid 20 dev vth3 
+  237  sudo bridge vlan add vid 20 dev vth4
+  238  sudo ip netns exec ns1 ping 192.168.10.2
+  239  history > /media/live/KINGSTON/komendy2.txt 
+  240  his
+  241  history 
+  242  sudo bridge vlan del vid 20 dev vth4
+  243  sudo bridge vlan del vid 20 dev vth3
+  244  sudo bridge vlan del vid 10 dev vth2
+  245  sudo bridge vlan del vid 10 dev bth1
+  246  sudo bridge vlan add vid 10 dev bth1 pvid untagged
+  247  sudo bridge vlan add vid 10 dev vth2 pvid untagged master
+  248  sudo bridge vlan add vid 20 dev vth3 pvid untagged
+  249  sudo bridge vlan add vid 20 dev vth4 pvid untagged master
+  250  sudo bridge vlan show
+  251  rm bth1 vth1
+  252  rn bth1 vth1
+  253  sudo ip netns exec ns1 ping 192.168.10.2
+  254  sudo ip netns exec ns1 ping 192.168.10.3
+  255  sudo ip netns exec ns3 ping 192.168.10.4
+  256  sudo ip netns exec ns3 ping 192.168.10.2
+  257  sudo bridge fdb show dynamic
+  258  history > /media/live/KINGSTON/komendy2.txt 
+  259  sudo bridge vlan show
+  260  sudo ip netns exec ns1 ping 192.168.10.2
+  261  sudo ip netns exec ns1 ping 192.168.10.3
+  262  sudo ip netns exec ns1 ping 192.168.20.3
+  263* sudo ip link add link br0 name br0.10 type vlan id 10up
+  264  sudo ip link add link br0 name br0.20 type vlan id 20
+  265  ip -br link show
+  266  sudo ip link set dev br0.10 up
+  267  sudo ip link set dev br0.20 up
+  268  ip -br link show
+  269  sudo ip addr add 192.168.10.5/24 dev br0.10
+  270  sudo ip addr add 192.168.20.5/24 dev br0.20
+  271  sudo ip netns exec ns2 ip a
+  272  sudo ip netns exec ns3 ip a
+  273  sudo ip netns exec ns3 ip addr del 192.168.10.3 dev vth3
+  274  sudo ip netns exec ns3 ip addr del 192.168.10.3 dev vth_3
+  275  sudo ip netns exec ns3 ip addr del 192.168.10.3/24 dev vth_3
+  276  sudo ip netns exec ns3 sudo ip addr del 192.168.10.3/24 dev vth_3
+  277  sudo ip netns exec ns3 ip a
+  278  sudo ip netns exec ns3 ip addr add 192.168.20.3/24 dev vth_3
+  279  sudo ip netns exec ns3 ip a
+  280  sudo ip netns exec ns4 ip a
+  281  sudo ip netns exec ns4 sudo ip addr del 192.168.10.4/24 dev vth_4
+  282  sudo ip netns exec ns4 ip addr add 192.168.20.4/24 dev vth_4
+  283  sudo ip netns exec ns4 ping 192.168.20.3
+  284  sudo cat /proc/sys/net/ipv4/ip_forward
+  285  sudo echo "1" > /proc/sys/net/ipv4/ip_forward
+  286  sudo su
+  287  sudo cat /proc/sys/net/ipv4/ip_forward
+  288  sudo bridge vlan add vid 10 dev br0 self
+  289  sudo bridge vlan add vid 20 dev br0 self
+  290  sudo pi netns exec ns1 ping 192.168.20.3
+  291  sudo ip netns exec ns1 ping 192.168.20.3
+  292  sudo ip -n ns1 route del default via 192.168.10.5 dev bth_1
+  293  sudo ip -n ns1 route del default via 192.168.10.5 dev vth_1
+  294  sudo ip -n ns1 route add default via 192.168.10.5 dev vth_1
+  295  sudo ip -n ns2 route add default via 192.168.10.5 dev vth_2
+  296  sudo ip -n ns3 route add default via 192.168.20.5 dev vth_3
+  297  sudo ip -n ns4 route add default via 192.168.20.5 dev vth_4
+  298  sudo bridge vlan add vid 10 dev br0 self
+  299  sudo bridge vlan add vid 20 dev br0 self
+  300  history > /live/media/KINGSTON/komendy2.txt
+  301  history > /media/live/KINGSTON/komendy2.txt
+  302  sudo ip netns exec ns1 ping 192.168.20.3
+  303  history > /media/live/KINGSTON/komendy2.txt
+  304  history 
+  305  sudo ip netns exec ns1 ping 192.168.20.4
+  306  sudo ip netns exec ns3 ping 192.168.10.1
+  307  history > /media/live/KINGSTON/komendy2.txt
