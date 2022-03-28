@@ -1,0 +1,2 @@
+sudo ip netns exec ns1 route add -net 172.19.0.0 netmask 255.255.0.0 gw 10.10.0.30 vpeer1
+sudo ip netns exec ns1 route add -net 172.20.0.0 netmask 255.255.0.0 gw 10.10.0.30 vpeer1
