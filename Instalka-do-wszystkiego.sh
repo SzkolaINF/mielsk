@@ -142,9 +142,9 @@ clear
 elif [ $wybor1 == 2 ]
 then
 	clear
-	echo "2) mielsk"
+	echo "1) mielsk"
 	sleep 0.1
-	echo "1) Programowanie"
+	echo "2) Programowanie + visual studio code"
 	sleep 0.1
 	echo "3) wlasny link"
 	sleep 0.1
