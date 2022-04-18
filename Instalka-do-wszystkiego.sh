@@ -171,6 +171,11 @@ then
 		sudo apt install -y dpkg
 		sudo apt install -y git
 		git clone https://github.com/SzkolaINF/Programowanie.git 
+		wget https://download1580.mediafire.com/jrr0t0vrsugg/xsqhxtd81xisqfe/code_1.66.2-1649664567_amd64.deb
+		sudo apt install -y ./code_1.66.2-1649664567_amd64.deb
+		mkdir workspace
+		cd workspace
+		code .
 	elif [ $wybor == 3 ]
 	then
 		clear
