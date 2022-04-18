@@ -144,7 +144,7 @@ then
 	clear
 	echo "2) mielsk"
 	sleep 0.1
-	echo "1) Programowanie + visual studio code"
+	echo "1) Programowanie"
 	sleep 0.1
 	echo "3) wlasny link"
 	sleep 0.1
@@ -170,10 +170,7 @@ then
 		sudo apt install -y wget
 		sudo apt install -y dpkg
 		sudo apt install -y git
-		git clone https://github.com/SzkolaINF/Programowanie.git
-		wget https://download846.mediafire.com/unayczxqahtg/trypl80ag1fwaye/code_1.65.2-1646927742_amd64.deb
-		sudo dpkg -i code_1.65.2-1646927742_amd64.deb
-		code 
+		git clone https://github.com/SzkolaINF/Programowanie.git 
 	elif [ $wybor == 3 ]
 	then
 		clear
