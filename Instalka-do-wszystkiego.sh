@@ -11,6 +11,7 @@ sleep 0.1
 echo "2) klonowanie z github"
 sleep 0.1
 echo "3) strony"
+echo " "
 echo -n "Twoj Wybor: "
 read wybor1
 
@@ -34,6 +35,7 @@ clear
 	sleep 0.1
 	echo "7) Powrot"
 	sleep 0.3
+	echo " "
 	echo -n "Wybierz liczbe: "
 	read wybor
 	clear
@@ -148,6 +150,7 @@ then
 	sleep 0.1
 	echo "4) powrot"
 	sleep 0.2
+	echo " "
 	echo -n "Jaki jest twoj wybor? (wpisz liczbe): "
 	read wybor
 
@@ -198,6 +201,7 @@ then
 	sleep 0.1
 	echo "4) powrot"
 	sleep 0.4
+	echo " "
 	echo -n "Wybierz liczbe: "
 	read wybor
 		if [ $wybor == 1 ]
