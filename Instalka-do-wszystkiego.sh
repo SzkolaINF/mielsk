@@ -110,19 +110,6 @@ clear
 		sudo java -jar TLauncher-2.841.jar
 		exec "./Instalka-do-wszystkiego.sh"
 		fi
-		elif [$wybor == 6 ]
-			if [ ani-cli ]
-			then
-				echo "milego ogladania"
-				echo "aby otworzyc aplikacje samemu napisz w terminalu "ani-cli"
-			else
-				sudo apt install -y git
-				git clone https://github.com/pystardust/ani-cli.git
-				cd ani-cli/
-				sudo cp ani-cli /usr/bin/ani-cli
-				cd
-				ani-cli
-			fi
 		elif [ $wybor == 7 ]
 		then
 		exec "./Instalka-do-wszystkiego.sh"
