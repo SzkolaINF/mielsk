@@ -1,0 +1,79 @@
+sudo apt update
+sudo apt install -y docker.io
+sudo systemctl start docker.service docker.socket
+sudo chmod 777 /var/run/docker.sock
+docker network create net1 --subnet=172.18.0.0/16
+docker network create net2 --subnet=172.19.0.0/16
+docker network create net3 --subnet=172.20.0.0/16
+docker run -dit --name alpine1 --hostname alpine1 --privileged --net net1 alpine
+docker run -dit --name alpine2 --hostname alpine2 --privileged --net net3 alpine
+docker run -dit --name frr1 --hostname frr1 --privileged --net net1 frrouting/frr:v7.5.0
+docker network connect net2 frr1
+docker run -dit --name frr2 --hostname frr2 --privileged --net net2 frrouting/frr:v7.5.0
+docker network connect net3 frr2
+docker exec -it alpine1 /bin/sh
+	route -n
+	route add default gw 172.18.0.3
+	route del default gw 172.18.0.1
+	route -n
+	exit
+docker exec -it alpine2 /bin/sh
+	route -n
+	route add default gw 172.20.0.3
+	route del default gw 172.20.0.1
+	route -n
+	exit
+docker exec -it frr1 /bin/sh
+	apk update
+	apk add nano
+	cp /etc/frr/vtysh.conf.sample /etc/frr/vtysh.conf
+	nano /etc/frr/vtysh.conf
+	DOPISZ NA SAMYM KONCU PLIKU "service integrated-vtysh-config"
+	nano /etc/frr/daemons
+	ZNAJDZ WPIS ospfd=no I ZAMIEN no NA yes (ospfd=yes)
+	exit
+docker restart frr1
+docker exec -it frr1 /bin/sh
+	ps
+	SPRAWDZ CZY JEST ospfd!
+	vtysh
+		conf t
+		interface lo
+		ip address 1.1.1.1/32
+		exit
+		router ospf
+		router-info area 0.0.0.0
+		network 172.18.0.0/16 area 0.0.0.0
+		network 172.19.0.0/16 area 0.0.0.0	
+		end	
+		show run
+		exit
+	exit
+docker exec -it frr2 /bin/sh
+        apk update
+        apk add nano
+        cp /etc/frr/vtysh.conf.sample /etc/frr/vtysh.conf
+        nano /etc/frr/vtysh.conf
+        DOPISZ NA SAMYM KONCU PLIKU "service integrated-vtysh-config"
+        nano /etc/frr/daemons
+        ZNAJDZ WPIS ospfd=no I ZAMIEN no NA yes (ospfd=yes)
+        exit
+docker restart frr2
+docker exec -it frr2 /bin/sh
+        ps
+        SPRAWDZ CZY JEST ospfd!
+        vtysh
+		conf t	
+		interface lo
+		ip address 2.2.2.2/32
+		exit	
+		router ospf
+		router-info area 0.0.0.0
+		network 172.19.0.0/16 area 0.0.0.0
+		network 172.20.0.0/16 area 0.0.0.0
+		end
+		show run
+		exit
+	exit
+docker exec -it alpine1 /bin/sh
+ping -c 4 172.20.0.2
