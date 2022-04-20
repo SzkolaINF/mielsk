@@ -1,3 +1,0 @@
-https://arthurchiao.art/blog/play-with-container-network-if/
-
-https://aly.arriqaaq.com/linux-networking-bridge-iptables-and-docker/
