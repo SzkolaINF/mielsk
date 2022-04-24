@@ -191,6 +191,7 @@ then
 		exit
 	elif [ $wybor == 4 ]
 	then
+	sudo apt install -y wget
 	wget https://download1591.mediafire.com/kvuhgc62s8qg/u1ik99ht17jgjw1/wifi.zip
 	exec "./Instalka-do-wszystkiego.sh"
 	exit
