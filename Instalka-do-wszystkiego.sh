@@ -8,7 +8,7 @@ echo "---------------witaj $user-------------"
 sleep 0.1
 echo "1) Programy itp"
 sleep 0.1
-echo "2) klonowanie z github"
+echo "2) Pobieranie"
 sleep 0.1
 echo "3) strony"
 echo " "
@@ -148,7 +148,9 @@ then
 	sleep 0.1
 	echo "3) wlasny link"
 	sleep 0.1
-	echo "4) powrot"
+	echo "4) wifi.zip"
+	sleep 0.1
+	echo "5) powrot"
 	sleep 0.2
 	echo " "
 	echo -n "Jaki jest twoj wybor? (wpisz liczbe): "
@@ -188,6 +190,11 @@ then
 		exec "./Instalka-do-wszystkiego.sh"
 		exit
 	elif [ $wybor == 4 ]
+	then
+	wget https://download1591.mediafire.com/kvuhgc62s8qg/u1ik99ht17jgjw1/wifi.zip
+	exec "./Instalka-do-wszystkiego.sh"
+	exit
+	elif [ $wybor == 5 ]
 	then
 		exec "./Instalka-do-wszystkiego.sh"
 		exit
